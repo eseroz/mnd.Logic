@@ -8,6 +8,7 @@ using mnd.Logic.Model.Muhasebe;
 using mnd.Logic.Model.Netsis;
 using mnd.Logic.Model.Operasyon;
 using mnd.Logic.Model.Satis;
+using mnd.Logic.Model.Stok;
 using mnd.Logic.Model.Uretim;
 using mnd.Logic.Persistence.Configurations;
 using mnd.Logic.Services._DTOs;
@@ -39,7 +40,7 @@ namespace mnd.Logic.Persistence
 
         public virtual DbSet<SurecDurum> SatisSurecDurumlari { get; set; }
 
-        public virtual DbSet<Urun> Urunler { get; set; }
+        public virtual DbSet<TBLIHRSTK> Urunler { get; set; }
         public virtual DbSet<BirimTip> BirimTipleri { get; set; }
         public virtual DbSet<AlasimTip> AlasimTipleri { get; set; }
         public virtual DbSet<MasuraTip> MasuraTipleri { get; set; }

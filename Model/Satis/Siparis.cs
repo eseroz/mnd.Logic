@@ -248,7 +248,20 @@ namespace mnd.Logic.Model.Satis
 
         public bool? SiparisAcikMi { get; set; }
 
+        public SiparisKalem KalemOluştur()
+        {
+            var siparisKalem = new SiparisKalem();
 
+            siparisKalem.RowGuid = Guid.NewGuid();
+
+
+
+            siparisKalem.KdvOran = this.SatisTipKod == SATISTIPI.YI && (this.TeslimTipKod == "IHR") ? 0 : 18;
+
+            siparisKalem.KdvOran = this.SatisTipKod == SATISTIPI.YD ? 0 : siparisKalem.KdvOran;
+
+            return siparisKalem;
+        }
 
 
     }

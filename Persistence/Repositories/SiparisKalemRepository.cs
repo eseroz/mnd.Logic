@@ -4,6 +4,7 @@ using mnd.Common.Helpers;
 using mnd.Logic.Helper;
 using mnd.Logic.Model._Ref;
 using mnd.Logic.Model.Satis;
+using mnd.Logic.Model.Stok;
 using mnd.Logic.Model.Uretim;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -105,8 +106,8 @@ namespace mnd.Logic.Persistence.Repositories
         public ObservableCollection<AmbalajTip> AmbalajTipleriGetir() => _dc.AmbalajTipleri.ToObservableCollection();
 
 
-        public ObservableCollection<Urun> UrunleriGetir() => _dc.Urunler.ToObservableCollection();
-        public ObservableCollection<Urun> UrunleriGetirReadOnly() => _dc.Urunler.AsNoTracking().ToObservableCollection();
+        public ObservableCollection<TBLIHRSTK> UrunleriGetir() => _dc.Urunler.ToObservableCollection();
+        public ObservableCollection<TBLIHRSTK> UrunleriGetirReadOnly() => _dc.Urunler.AsNoTracking().ToObservableCollection();
 
         public SiparisKalem SipariseAitIlkKalemiGetir(string ilgiliKapasitifSiparisKod)
         {

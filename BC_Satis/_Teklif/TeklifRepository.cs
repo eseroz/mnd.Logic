@@ -80,8 +80,12 @@ namespace mnd.Logic.BC_Satis._Teklif
 
         }
 
-       
 
+        public int UlkeTeklifSayisiVer(string _ulkeAdi)
+        {
+            var s = dc.Teklifler.Where(p => p.GidecegiUlke == _ulkeAdi).Count();
+            return s;
+        }
         public IQueryable<Teklif> TeklifQuery()
         {
             var teklifler = dc.Teklifler

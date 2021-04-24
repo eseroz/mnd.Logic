@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using mnd.Logic.Helper;
 using mnd.Logic.Model.Satis;
+using mnd.Logic.Model.Stok;
 using mnd.Logic.Model.Uretim;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -46,13 +47,13 @@ namespace mnd.Logic.Persistence.Repositories
             _dc.SaveChanges();
         }
 
-        public void UrunEkle(Urun obj)
+        public void UrunEkle(TBLIHRSTK obj)
         {
             _dc.Urunler.Add(obj);
             _dc.SaveChanges();
         }
 
-        public ObservableCollection<Urun> UrunListesiGetir()
+        public ObservableCollection<TBLIHRSTK> UrunListesiGetir()
         {
             return _dc.Urunler.ToObservableCollection();
         }
