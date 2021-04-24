@@ -1,0 +1,3 @@
+﻿namespace mnd.Logic.Services
+{
+}
