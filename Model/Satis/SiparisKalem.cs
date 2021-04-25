@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using mnd.Common.Helpers;
+﻿using mnd.Common.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,11 +15,16 @@ namespace mnd.Logic.Model.Satis
             set => SetProperty(ref siparisKalemKod, value);
         }
         public string SiparisKod { get; set; }
+
+        public string NakliyeDurumTip { get => nakliyeDurumTip; set => SetProperty(ref nakliyeDurumTip, value); }
+
         public DateTime TeslimTarihi { get => teslimTarihi; set => teslimTarihi = value; }
         public string MusteriUrunKodu { get; set; }
         public string UrunKod { get => urunKod; set => SetProperty(ref urunKod, value); }
         public string UrunAdiTR { get => urunAdiTR; set => SetProperty(ref urunAdiTR, value); }
         public string UrunAdiEN { get => urunAdiEN; set => SetProperty(ref urunAdiEN, value); }
+        public string DonemGrup { get => donemGrup; set => SetProperty(ref donemGrup, value); }
+        public string Donem { get => donem; set => SetProperty(ref donem, value); }
         public decimal? GR { get => gR; set => SetProperty(ref gR, value); }
         public decimal? PCS { get => pCS; set => SetProperty(ref pCS, value); }
         public decimal? BOX { get => bOX; set => SetProperty(ref bOX, value); }
@@ -34,7 +39,7 @@ namespace mnd.Logic.Model.Satis
         {
             get => birimFiyat.GetValueOrDefault();
             set => SetProperty(ref birimFiyat, value);
-        }        
+        }
         public decimal? KdvOran
         {
             get => kdvOran;
@@ -61,7 +66,7 @@ namespace mnd.Logic.Model.Satis
         public Guid? RowGuid { get; set; }
 
         public void GenelToplamlariGuncelle()
-        {              
+        {
             BirimFiyat = Math.Round(BirimFiyat.GetValueOrDefault(), 3);
             Tutar = BirimFiyat * Miktar;
             KdvTutar = Tutar * kdvOran / (decimal)100.0;
@@ -85,7 +90,7 @@ namespace mnd.Logic.Model.Satis
         public int OkunmamisMesajSayisi { get => _okunmamisMesajSayisi; set => SetProperty(ref _okunmamisMesajSayisi, value); }
         //public string RevizeSevkHaftasi { get => revizeSevkHaftasi; set => SetProperty(ref revizeSevkHaftasi , value); }        
         [NotMapped]
-        public string SevkYilAy { get;  set; }
+        public string SevkYilAy { get; set; }
 
         private string urunKod;
         private string urunAdiTR;
@@ -109,9 +114,12 @@ namespace mnd.Logic.Model.Satis
         private bool satirSecildiMi;
         private int _mesajSayisi;
         private int _okunmamisMesajSayisi;
-        private string revizeSevkHaftasi;
         private decimal? kdvTutar;
         private decimal? kdvOran;
         private decimal? genelToplamTutar;
+        private string donemGrup;
+        private string donem;
+        private string nakliyeDurumTip;
+
     }
 }

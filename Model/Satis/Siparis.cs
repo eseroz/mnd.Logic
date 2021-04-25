@@ -256,11 +256,25 @@ namespace mnd.Logic.Model.Satis
 
 
 
-            siparisKalem.KdvOran = this.SatisTipKod == SATISTIPI.YI && (this.TeslimTipKod == "IHR") ? 0 : 18;
+            //siparisKalem.KdvOran = this.SatisTipKod == SATISTIPI.YI && (this.TeslimTipKod == "IHR") ? 0 : 18;
 
-            siparisKalem.KdvOran = this.SatisTipKod == SATISTIPI.YD ? 0 : siparisKalem.KdvOran;
+            //siparisKalem.KdvOran = this.SatisTipKod == SATISTIPI.YD ? 0 : siparisKalem.KdvOran;
 
             return siparisKalem;
+        }
+
+        public void KalemEkle(SiparisKalem kalem)
+        {
+            this._siparisKalemleri.Add(kalem);
+
+            OnPropertyChanged(nameof(SiparisKalemleri));
+        }
+
+
+        public void KalemSil(SiparisKalem kalem)
+        {
+            this._siparisKalemleri.Remove(kalem);
+            OnPropertyChanged(nameof(SiparisKalemleri));
         }
 
 
