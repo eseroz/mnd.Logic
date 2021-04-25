@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Linq;
+using mnd.Logic.Helper;
 
 namespace mnd.Logic.Model.Satis
 {
@@ -173,7 +174,45 @@ namespace mnd.Logic.Model.Satis
             return siparis;
         }
 
-        public static Siparis SiparisOlustur(string teklifSıraKod, string kullaniciId)
+
+        public static Siparis SiparisOlustur(string kullaniciId, string temsilciAdSoyad, Siparis siparis = null)
+        {
+
+
+            var sifirdanSiparis = (siparis == null);
+
+            var kopya = PandapObjectHelper.CopyObject(siparis);
+
+            var yeniSiparis = sifirdanSiparis == false ? kopya : VarsayilanYeniSiparisOlustur();
+
+            yeniSiparis.SiparisKod = null;
+            yeniSiparis.SiparisTarih = DateTime.Now.Date;
+            yeniSiparis.RowGuid = Guid.NewGuid();
+            yeniSiparis.SiparisSurecDurum = mnd.Common.Helpers.SIPARISSURECDURUM.SATISTA;
+            yeniSiparis.CreatedUserId = kullaniciId;
+            yeniSiparis.TemsilciAdSoyad = siparis?.TemsilciAdSoyad;
+
+            yeniSiparis.SiparisAcikMi = true;
+
+            yeniSiparis.SiparisKalemleri.ToList().ForEach(c =>
+            {
+                c.SiparisKalemKod = null;
+                c.RowGuid = Guid.NewGuid();
+
+
+
+            });
+
+
+ 
+
+
+
+            return yeniSiparis;
+        }
+
+
+        public static Siparis TekliftenSiparisOlustur(string teklifSıraKod, string kullaniciId)
         {
             if (teklifSıraKod.Length > 0)
             {
