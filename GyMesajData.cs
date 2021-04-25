@@ -42,7 +42,7 @@ namespace mnd.Logic
 
             if (mesaj.DokumanIcerik == null) return;
 
-            var commandText = $"update App.Mesaj set DokumanIcerik='{mesaj.DokumanIcerik.Trim()}' where Id={mesaj.Id}";
+            var commandText = $"update MNDAPPFS.App.Mesaj set DokumanIcerik='{mesaj.DokumanIcerik.Trim()}' where Id={mesaj.Id}";
 
             _dc.Database.ExecuteSqlCommand(commandText);
         }
@@ -51,7 +51,7 @@ namespace mnd.Logic
         {
             var connection = (SqlConnection)_dc.Database.GetDbConnection();
 
-            var commandText = $"select DokumanIcerik from App.Mesaj where Id={id}";
+            var commandText = $"select DokumanIcerik from MNDAPPFS.App.Mesaj where Id={id}";
 
             var command = connection.CreateCommand();
             command.CommandText = commandText;

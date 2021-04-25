@@ -177,38 +177,38 @@ namespace mnd.Logic.Services
 
         public static List<CariSiparisMiktarlari> SevkiyatEmirleriFiyatGetir(string cariKod = "Tümü")
         {
-            PandapContext _dc = new PandapContext();
+            //PandapContext _dc = new PandapContext();
 
-            var lmeTarih = DateTime.Now.AddDays(-1).Date;
+            //var lmeTarih = DateTime.Now.AddDays(-1).Date;
 
-            var lmeGunlukFiyat = LmeService.LmeFiyatGetirTarihten(lmeTarih);
+            //var lmeGunlukFiyat = LmeService.LmeFiyatGetirTarihten(lmeTarih);
 
-            var x = _dc.UretimPaletler
-               .Include(c => c.Bobinler)
-               .Include(c => c.FiyatKalemKodNav)
-               .Include(c => c.FiyatKalemKodNav).ThenInclude(k => k.SiparisNav)
-               .Include(c => c.FiyatKalemKodNav).ThenInclude(c => c.SiparisNav).ThenInclude(c => c.CariKartNavigation)
-               .Where(c => c.PaletKonum == PALETKONUM.SEVKEMRI && c.FiyatKalemKod != null);
-
-
-            if (cariKod != "Tümü") x = x.AsQueryable().Where(c => c.FiyatKalemKodNav.SiparisNav.CariKod == cariKod);
+            //var x = _dc.UretimPaletler
+            //   .Include(c => c.Bobinler)
+            //   .Include(c => c.FiyatKalemKodNav)
+            //   .Include(c => c.FiyatKalemKodNav).ThenInclude(k => k.SiparisNav)
+            //   .Include(c => c.FiyatKalemKodNav).ThenInclude(c => c.SiparisNav).ThenInclude(c => c.CariKartNavigation)
+            //   .Where(c => c.PaletKonum == PALETKONUM.SEVKEMRI && c.FiyatKalemKod != null);
 
 
-            var cev = x.ToList();
+            //if (cariKod != "Tümü") x = x.AsQueryable().Where(c => c.FiyatKalemKodNav.SiparisNav.CariKod == cariKod);
 
 
-            var x1 =
-               x.ToList()
-               .Select(c => new
-               {
-                   cariKod = c.FiyatKalemKodNav.SiparisNav.CariKod,
-                   ilgiliId = c.Id.ToString(),
-                   kdvOran = c.FiyatKalemKodNav.KdvOran,
-                   miktarKg = c.Bobinler.Sum(t => t.Agirlik_kg),
-                   dovizTipKod = c.FiyatKalemKodNav.SiparisNav.TakipDovizTipKod,
+            //var cev = x.ToList();
 
-               })
-               .ToList();
+
+            //var x1 =
+            //   x.ToList()
+            //   .Select(c => new
+            //   {
+            //       cariKod = c.FiyatKalemKodNav.SiparisNav.CariKod,
+            //       ilgiliId = c.Id.ToString(),
+            //       kdvOran = c.FiyatKalemKodNav.KdvOran,
+            //       miktarKg = c.Bobinler.Sum(t => t.Agirlik_kg),
+            //       dovizTipKod = c.FiyatKalemKodNav.SiparisNav.TakipDovizTipKod,
+
+            //   })
+            //   .ToList();
 
             //var x2=x1
             //   .Select(c => SiparisFiyatHesapService.FiyatSonucDTO_Getir(c.cariKod,

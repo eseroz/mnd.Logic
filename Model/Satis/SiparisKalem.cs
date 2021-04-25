@@ -16,6 +16,7 @@ namespace mnd.Logic.Model.Satis
         }
         public string SiparisKod { get; set; }
 
+        public int TeslimYil { get => teslimYil; set => SetProperty(ref teslimYil, value); }
         public string NakliyeDurumTip { get => nakliyeDurumTip; set => SetProperty(ref nakliyeDurumTip, value); }
 
         public DateTime TeslimTarihi { get => teslimTarihi; set => teslimTarihi = value; }
@@ -120,6 +121,6 @@ namespace mnd.Logic.Model.Satis
         private string donemGrup;
         private string donem;
         private string nakliyeDurumTip;
-
+        private int teslimYil;
     }
 }
