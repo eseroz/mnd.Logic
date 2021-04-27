@@ -47,6 +47,7 @@ namespace mnd.Logic.Model.Satis
         private string musteriKullanimAlanTipKod;
         private decimal? dbsLimit;
         private int? tonaj2021;
+        private bool plasiyereAitMusteriMi;
 
         [Key]
         public string CariKod { get; set; }
@@ -63,8 +64,14 @@ namespace mnd.Logic.Model.Satis
         public string PandaAgent { get => pandaAgent; set => SetProperty(ref pandaAgent, value); }
         public string PandaSahaSorumlusu { get => pandaSahaSorumlusu; set => SetProperty(ref pandaSahaSorumlusu, value); }
 
+        public bool PlasiyereAitMusteriMi { 
+            get => plasiyereAitMusteriMi;
+            set
+            {
+                SetProperty(ref plasiyereAitMusteriMi, value);
+            }                    
+        }
 
-      
         public string CariTel { get; set; }
         public string CariIl { get; set; }
         public string UlkeKod { get; set; }
@@ -107,7 +114,7 @@ namespace mnd.Logic.Model.Satis
 
 
 
-        public decimal? DbsLimit { get => dbsLimit; set => SetProperty(ref dbsLimit , value); }
+        public decimal? DbsLimit { get => dbsLimit; set => SetProperty(ref dbsLimit, value); }
 
         public decimal? EximBankKod { get => eximBankKod; set => SetProperty(ref eximBankKod, value); }
 
@@ -370,6 +377,6 @@ namespace mnd.Logic.Model.Satis
 
         public string SonGuncelleyen { get => sonGuncelleyen; set => SetProperty(ref sonGuncelleyen, value); }
         public DateTime? SonGuncellemeTar { get => sonGuncellemeTar; set => SetProperty(ref sonGuncellemeTar, value); }
-       
+
     }
 }

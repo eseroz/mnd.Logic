@@ -1,6 +1,7 @@
 ﻿using mnd.Logic.BC_Satis._Teklif;
 using mnd.Logic.Persistence.Repositories;
 using mnd.Logic.Services.SiparisService;
+using Pandap.Logic.Persistence.Repositories;
 using System;
 
 namespace mnd.Logic.Persistence
@@ -38,7 +39,8 @@ namespace mnd.Logic.Persistence
         public MuhasebeRepository MuhasebeRepo { get; set; }
 
         public UlkeRepository UlkeRepo { get; set; }
-     
+
+        public PlasiyerRepository PlasiyerRepo { get; set; }
 
         public UnitOfWork()
         {
@@ -80,6 +82,8 @@ namespace mnd.Logic.Persistence
             BankaRepo = new BankaRepository(_context);
 
             UlkeRepo = new UlkeRepository(new BC_App.Data.AppDataContext());
+
+            PlasiyerRepo = new PlasiyerRepository(new BC_App.Data.AppDataContext());
 
         }
 

@@ -21,6 +21,8 @@ namespace mnd.Logic.BC_App.Domain
 
         public string YetkiliMakinalar { get; set; }
 
+        public string PlasiyerKod { get; set; }
+
 
     }
 }
