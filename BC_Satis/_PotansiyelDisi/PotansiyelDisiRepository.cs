@@ -21,7 +21,7 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         {
             dc = new PotansiyelDisiDbContext();
             var musteriler = dc.PostansiyelDisiMusteriAramas
-                .Where(c => plasiyerKodlari.Any(x => x.ToString() == c.PlasiyerKod) && c.MusteriGrubuAdı == MusteriGrubuAdı)
+                .Where(c => plasiyerKodlari.Any(x => x.ToString() == c.PlasiyerKod) && c.MusteriGrubuAdı == MusteriGrubuAdı).OrderBy(o=>o.MusteriUnvan)
                 .Select(i => i.MusteriUnvan).Distinct().ToList();
 
             List<PotansiyelMusteriDTO> potansiyel = new List<PotansiyelMusteriDTO>();
@@ -30,7 +30,15 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
              
                 var sonucMusteri = new PotansiyelMusteriDTO { MusteriUnvan = musteri.ToString() };
 
-                sonucMusteri.MusteriAramalarDTO = dc.PostansiyelDisiMusteriAramas.Where(l => l.MusteriUnvan == sonucMusteri.MusteriUnvan).ToList();
+                sonucMusteri.MusteriAramalarDTO = dc.PostansiyelDisiMusteriAramas.Where(l => l.MusteriUnvan == sonucMusteri.MusteriUnvan).OrderByDescending(o=>o.Tarih).ToList();
+               
+                var sonKayit = sonucMusteri.MusteriAramalarDTO.FirstOrDefault();
+
+ 
+                TimeSpan ?gun = (sonKayit.Tarih - DateTime.Now);
+                
+
+                sonucMusteri.SonGorusmeSuresi = Math.Round(gun.Value.TotalDays).ToString() + " Gün";
                 sonucMusteri.Id = sonucMusteri.MusteriAramalarDTO.FirstOrDefault().Id;
                 sonucMusteri.UlkeAdi = sonucMusteri.MusteriAramalarDTO.FirstOrDefault()?.UlkeAdi;
                 

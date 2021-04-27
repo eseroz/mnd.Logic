@@ -17,7 +17,7 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         public string UlkeAdi { get; set; }
         public string UlkeKodu { get; set; }
         public string KonuDetay { get; set; }
-
+        public string Konu { get; set; }
         public string GorusulenKisiAdi { get; set; }
         public string GorusulenKisiGorevi { get; set; }
         public string GorusulenKisiTelefon { get; set; }

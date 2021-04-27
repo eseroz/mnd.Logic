@@ -12,6 +12,7 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         public string UlkeAdi { get; set; }
         public string UlkeKodu { get; set; }
         public int ToplamGorusmeSayisi { get; set; }
+        public string SonGorusmeSuresi { get; set; }
         public List<PotansiyelDisiMusteriArama> MusteriAramalarDTO {
             get => musteriAramalarDTO;
             set { 
@@ -35,6 +36,8 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         public string GorusulenKisiGorevi { get; set; }
         public string GorusulenKisiTelefon { get; set; }
         public string GorusulenKisiEposta { get; set; }
+
+
         public PotansiyelMusteriAramalarDTO()
         {
 
