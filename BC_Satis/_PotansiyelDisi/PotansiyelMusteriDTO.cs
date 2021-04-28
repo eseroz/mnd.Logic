@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace mnd.Logic.BC_Satis._PotansiyelDisi
 {
@@ -9,6 +10,7 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
 
         public int Id { get; set; }
         public string MusteriUnvan { get; set; }
+        public string MusteriGrubuAdı { get; set; }
         public string UlkeAdi { get; set; }
         public string UlkeKodu { get; set; }
         public int ToplamGorusmeSayisi { get; set; }

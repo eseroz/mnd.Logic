@@ -36,9 +36,9 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
 
  
                 TimeSpan ?gun = (sonKayit.Tarih - DateTime.Now);
-                
-
-                sonucMusteri.SonGorusmeSuresi = Math.Round(gun.Value.TotalDays).ToString() + " Gün";
+                int yeniGun = 0;
+                if (gun.Value.TotalDays < 0) { yeniGun = (int)gun.Value.TotalDays * -1; }
+                sonucMusteri.SonGorusmeSuresi = yeniGun.ToString();
                 sonucMusteri.Id = sonucMusteri.MusteriAramalarDTO.FirstOrDefault().Id;
                 sonucMusteri.UlkeAdi = sonucMusteri.MusteriAramalarDTO.FirstOrDefault()?.UlkeAdi;
                 
