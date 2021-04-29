@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using mnd.Logic.Helper;
+using mnd.Logic.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,30 +25,40 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
                 .Where(c => plasiyerKodlari.Any(x => x.ToString() == c.PlasiyerKod) && c.MusteriGrubuAdı == MusteriGrubuAdı).OrderBy(o=>o.MusteriUnvan)
                 .Select(i => i.MusteriUnvan).Distinct().ToList();
 
+            List<PotansiyelMusteriDTO> musterilerListesi = new List<PotansiyelMusteriDTO>();
             List<PotansiyelMusteriDTO> potansiyel = new List<PotansiyelMusteriDTO>();
-            foreach (var musteri in musteriler)
+            foreach (var musteriUnvan in musteriler)
             {
-             
-                var sonucMusteri = new PotansiyelMusteriDTO { MusteriUnvan = musteri.ToString() };
+                var sonucMusteri = new PotansiyelMusteriDTO
+                { 
+                      MusteriUnvan = musteriUnvan,
+                      MusteriGrubuAdı=MusteriGrubuAdı
+                }; 
 
                 sonucMusteri.MusteriAramalarDTO = dc.PostansiyelDisiMusteriAramas.Where(l => l.MusteriUnvan == sonucMusteri.MusteriUnvan).OrderByDescending(o=>o.Tarih).ToList();
                
                 var sonKayit = sonucMusteri.MusteriAramalarDTO.FirstOrDefault();
-
  
                 TimeSpan ?gun = (sonKayit.Tarih - DateTime.Now);
                 int yeniGun = 0;
+
                 if (gun.Value.TotalDays < 0) { yeniGun = (int)gun.Value.TotalDays * -1; }
                 sonucMusteri.SonGorusmeSuresi = yeniGun.ToString();
+
                 sonucMusteri.Id = sonucMusteri.MusteriAramalarDTO.FirstOrDefault().Id;
                 sonucMusteri.UlkeAdi = sonucMusteri.MusteriAramalarDTO.FirstOrDefault()?.UlkeAdi;
                 
                 var ulke = dc.UlkeSabits.Where(p => p.UlkeAdi == sonucMusteri.UlkeAdi).FirstOrDefault();
                 sonucMusteri.UlkeKodu = ulke.UlkeKodu;
-                potansiyel.Add(sonucMusteri);
-            }
 
-     
+                UnitOfWork uow = new UnitOfWork();
+
+                var ekleyenPlasiyer = uow.PlasiyerRepo.getPlasiyer(sonucMusteri.MusteriAramalarDTO.FirstOrDefault()?.Ekleyen);
+                uow.Dispose();
+                sonucMusteri.Plasiyer = ekleyenPlasiyer.AdSoyad;
+                potansiyel.Add(sonucMusteri);
+
+            }               
 
             return potansiyel.ToObservableCollection();
 

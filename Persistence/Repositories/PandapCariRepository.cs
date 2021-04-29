@@ -48,11 +48,22 @@ namespace mnd.Logic.Persistence.Repositories
                     .Where(c => bagliPlasiyerKodlari.Any(x => x.ToString() == c.PandaMusteriSorumluKod));
 
 
+
             if (kullaniciRol != KULLANICIROLLERI.YONETICI)
             {
                 sonuc = sonuc.Where(c => c.CariIsim.Contains("SEHERLİ DIŞ") == false && c.CariIsim.Contains("SEHERLI DIS") == false);
             }
 
+
+            UnitOfWork uow = new UnitOfWork();
+
+
+            foreach (var item in sonuc)
+            {
+                item.PandaMusteriSorumlusu = uow.PlasiyerRepo.getPlasiyer(string.Empty, item.PlasiyerKod)?.AdSoyad;
+            }
+
+            uow.Dispose();
 
             var liste =await sonuc.ToListAsync();
 
