@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using mnd.Logic.Helper;
 using mnd.Logic.Persistence;
+using Pandap.Logic.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,11 +20,9 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         }
 
         public ObservableCollection<PotansiyelDisiMusteri> PTD_Aramalari_Getir(string[] plasiyerKodlari, string MusteriGrubuAdı)
-        {
-            dc = new PotansiyelDisiDbContext();
-
+        {  
             var musteriler = dc.PostansiyelDisiMusteris
-                .Include(x=>x.PotansiyelDisiMusteriArama)                
+                .Include(x=>x.PotansiyelDisiMusteriArama)
                 .Where(c => plasiyerKodlari.Any(x => x.ToString() == c.PlasiyerKod) && c.MusteriGrubuAdi == MusteriGrubuAdı)
                 .OrderBy(o=>o.MusteriUnvan).ToObservableCollection();
 
@@ -35,11 +34,16 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
             dc.SaveChanges();
         }
 
-        public void Ekle(PotansiyelDisiMusteriArama ptd_Arama)
+        public void AramaEkle(PotansiyelDisiMusteriArama ptd_Arama)
         {
             dc.PostansiyelDisiMusteriAramas.Add(ptd_Arama);
         }
-
+        public void MusteriEkle(PotansiyelDisiMusteri ptd_Musteri)
+        {
+            dc = new PotansiyelDisiDbContext();
+            dc.PostansiyelDisiMusteris.Add(ptd_Musteri);
+            dc.SaveChanges();
+        }
         public PotansiyelDisiMusteriArama Ptd_AramaGetirNoTrack(int id)
         {
             var ptd_Aramalar = dc.PostansiyelDisiMusteriAramas

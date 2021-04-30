@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mnd.Logic.BC_Satis._PotansiyelDisi;
+using mnd.Logic.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace mnd.Logic.BC_App.Domain
 {
-    public class Kullanici
+    public class Kullanici: MyBindableBase
     {
         [Key]
         public string KullaniciId { get; set; }
@@ -22,6 +24,7 @@ namespace mnd.Logic.BC_App.Domain
         public string YetkiliMakinalar { get; set; }
 
         public string PlasiyerKod { get; set; }
+
 
 
     }
