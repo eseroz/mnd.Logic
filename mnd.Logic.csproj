@@ -225,7 +225,7 @@
     <Compile Include="BC_SatinAlmaYeni\Domain\VwStokTanim.cs" />
     <Compile Include="BC_SatinAlmaYeni\NavBadgeService.cs" />
     <Compile Include="BC_Satis\Data_LookUp\Model\TasimaSekli.cs" />
-    <Compile Include="BC_Satis\_PotansiyelDisi\PotansiyelMusteriDTO.cs" />
+    <Compile Include="BC_Satis\_PotansiyelDisi\PotansiyelDisiMusteri.cs" />
     <Compile Include="BC_Satis\_PotansiyelDisi\PotansiyelDisiMusteriArama.cs" />
     <Compile Include="BC_Satis\_PotansiyelDisi\PotansiyelDisiDbContext.cs" />
     <Compile Include="BC_Satis\_PotansiyelDisi\PotansiyelDisiRepository.cs" />

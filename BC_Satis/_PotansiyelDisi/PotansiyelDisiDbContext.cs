@@ -10,6 +10,7 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
 {
     public class PotansiyelDisiDbContext:DbContext
     {
+        public DbSet<PotansiyelDisiMusteri> PostansiyelDisiMusteris { get; set; }
         public DbSet<PotansiyelDisiMusteriArama> PostansiyelDisiMusteriAramas { get; set; }
         public DbSet<P_UlkeSabit> UlkeSabits { get; set; }
 
@@ -29,10 +30,13 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("Satis");
-
+            modelBuilder.Entity<PotansiyelDisiMusteri>().ToTable(nameof(PotansiyelDisiMusteri));
             modelBuilder.Entity<PotansiyelDisiMusteriArama>().ToTable(nameof(PotansiyelDisiMusteriArama));
             modelBuilder.Entity<P_UlkeSabit>().ToTable("UlkeSabit", "App");
 
+            modelBuilder.Entity<PotansiyelDisiMusteriArama>()
+            .HasOne(p => p.PotansiyelDisiMusteri)
+            .WithMany(b => b.PotansiyelDisiMusteriArama);
 
             base.OnModelCreating(modelBuilder);
         }
