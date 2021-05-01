@@ -86,6 +86,7 @@ namespace mnd.Logic.Persistence
         public DbSet<KullaniciRol> KullaniciRols { get; set; }
 
         public DbSet<PandapCari> PandapCaris { get; set; }
+
         public DbSet<RaporTanim> RaporTanims { get; set; }
 
         public DbSet<Banka> Bankas { get; set; }

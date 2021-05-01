@@ -45,7 +45,7 @@ namespace mnd.Logic.Persistence.Repositories
                     .Include(c => c.Gorusmeler).ThenInclude(p => p.GorusmeTip)
                     .Include(c => c.Gorusmeler).ThenInclude(p => p.GorusmeKonuTip)
                     .Where(c => c.PasifMi.GetValueOrDefault() == false)
-                    .Where(c => bagliPlasiyerKodlari.Any(x => x.ToString() == c.PandaMusteriSorumluKod));
+                    .Where(c => bagliPlasiyerKodlari.Any(x => x.ToString() == c.PandaMusteriSorumluKod) && c.PlasiyereAitMusteriMi == true);
 
 
 
@@ -107,7 +107,7 @@ namespace mnd.Logic.Persistence.Repositories
             var cariListe = cariListeQuery
                         .AsNoTracking()
                             .ToList();
-          
+
 
             return cariListe.ToObservableCollection();
 
@@ -119,11 +119,11 @@ namespace mnd.Logic.Persistence.Repositories
 
         public PandapCariDto PandapCariDetayGetir(string cariKod)
         {
-            var cariListeQuery = _dc.PandapCaris
-                .Include(c => c.KullanimAlanNavigation)
-                .Include(c => c.CariEmailler)
-                .Include(c => c.CariHareketler)
-                .Include(c => c.CariDokumanlar)
+            var cariQuery = _dc.PandapCaris
+                //.Include(c => c.KullanimAlanNavigation)
+                //.Include(c => c.CariEmailler)
+                //.Include(c => c.CariHareketler)
+                //.Include(c => c.CariDokumanlar)
                 .Where(c => c.CariKod == cariKod)
                 .Select(c => new PandapCariDto
                 {
@@ -135,20 +135,19 @@ namespace mnd.Logic.Persistence.Repositories
                     UlkeAd = c.UlkeAd,
                     CariIsim = c.CariIsim,
 
-
                     AgentId = c.PandaAgent,
                     Agent = c.PandaAgent,
 
                     Adres = c.CariAdres,
-                    SevkAdres=c.CariSevkAdres,
+                    SevkAdres = c.CariSevkAdres,
 
                     Tel = c.CariTel,
-                    Email=c.Email,
-                    Web =c.Web,
+                    Email = c.Email,
+                    Web = c.Web,
 
-                    YillikTonaj = c.YillikKapasiteTonaj.GetValueOrDefault(),
-                    KullanimAlanTipKod = c.MusteriKullanimAlanTipKod,
-                    KullanimAlanAd = c.KullanimAlanNavigation.Aciklama_EN,
+                    //YillikTonaj = c.YillikKapasiteTonaj.GetValueOrDefault(),
+                    //KullanimAlanTipKod = c.MusteriKullanimAlanTipKod,
+                    //KullanimAlanAd = c.KullanimAlanNavigation.Aciklama_EN,
 
                     MusteriSorumlusu = c.PandaMusteriSorumlusu,
                     PandaSahaSorumlusuId = c.PandaSahaSorumlusu,
@@ -159,7 +158,7 @@ namespace mnd.Logic.Persistence.Repositories
                     KontratDonemDeger = c.KontratDonemDeger,
 
 
-                    CariEmailListe = c.CariEmailler.ToObservableCollection(),
+                    //CariEmailListe = c.CariEmailler.ToObservableCollection(),
                     CariDokumanlar = c.CariDokumanlar,
 
                     CariHareketler = c.CariHareketler,
@@ -192,7 +191,7 @@ namespace mnd.Logic.Persistence.Repositories
 
                 });
 
-            return cariListeQuery.First();
+            return cariQuery.First();
 
         }
 

@@ -34,6 +34,12 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
             dc.SaveChanges();
         }
 
+        public void Dispose()
+        {
+            dc.Dispose();
+        }
+
+
         public void AramaEkle(PotansiyelDisiMusteri musteri, PotansiyelDisiMusteriArama ptd_Arama)
         {
 
@@ -94,5 +100,9 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
             return musteri;
         }
 
+
+        public bool DegisiklikVarMi() {
+            return dc.ChangeTracker.HasChanges();
+        }
     }
 }
