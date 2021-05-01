@@ -34,10 +34,6 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
             modelBuilder.Entity<PotansiyelDisiMusteriArama>().ToTable(nameof(PotansiyelDisiMusteriArama));
             modelBuilder.Entity<P_UlkeSabit>().ToTable("UlkeSabit", "App");
 
-            modelBuilder.Entity<PotansiyelDisiMusteriArama>()
-            .HasOne(p => p.PotansiyelDisiMusteri)
-            .WithMany(b => b.PotansiyelDisiMusteriArama);
-
             base.OnModelCreating(modelBuilder);
         }
     }

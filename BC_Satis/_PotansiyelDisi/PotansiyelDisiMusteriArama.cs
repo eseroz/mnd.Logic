@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,6 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         public string GorusulenKisiEposta { get => gorusulenKisiEposta; set => SetProperty(ref gorusulenKisiEposta, value); }
         public string PlasiyerKod { get => plasiyerKod; set => SetProperty(ref plasiyerKod, value); }
 
-        public PotansiyelDisiMusteri PotansiyelDisiMusteri {
-            get => potansiyelDisiMusteri; 
-            set => SetProperty(ref potansiyelDisiMusteri, value); 
-        }
 
 
         public string CreatedUserId { get; set; }
@@ -47,6 +44,6 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         private string plasiyerAd;
         private string plasiyerKod;
         private int potansiyelDisiMusteriId;
-        private PotansiyelDisiMusteri potansiyelDisiMusteri;
+
     }
 }

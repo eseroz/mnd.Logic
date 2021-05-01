@@ -58,26 +58,41 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         }
         public PotansiyelDisiMusteriArama Ptd_SonAramaGetir(int musteriId)
         {
-            var ptd_Aramalar = dc.PostansiyelDisiMusteriAramas
-                .Where(c => c.PotansiyelDisiMusteriId == musteriId).LastOrDefault();
-
+            var _dc = new PotansiyelDisiDbContext();
+            var ptd_Aramalar = _dc.PostansiyelDisiMusteriAramas
+                .Where(c => c.PotansiyelDisiMusteriId == musteriId)
+                .AsNoTracking()
+                .LastOrDefault();
+            _dc.Dispose();
             return ptd_Aramalar;
         }
         public PotansiyelDisiMusteriArama Ptd_AramaGetir(int id)
         {
-            var ptd_Aramalar = dc.PostansiyelDisiMusteriAramas
+            var _dc = new PotansiyelDisiDbContext();
+            var ptd_Aramalar = _dc.PostansiyelDisiMusteriAramas
                 .Where(c => c.Id == id).FirstOrDefault();
-
+            _dc.Dispose();
             return ptd_Aramalar;
         }
 
         public List<P_UlkeSabit> UlkeleriGetir()
         {
-            return dc.UlkeSabits
+            var _dc = new PotansiyelDisiDbContext();
+            var ulkeler = _dc.UlkeSabits
                 .OrderBy(c=>c.UlkeAdi)
                 .AsNoTracking().ToList();
+            _dc.Dispose();
+            return ulkeler;
         }
 
+
+        public PotansiyelDisiMusteri getMusteri(int musteriId)
+        {
+            var _dc = new PotansiyelDisiDbContext();
+            var musteri = _dc.PostansiyelDisiMusteris.Where(p => p.Id == musteriId).FirstOrDefault();
+            _dc.Dispose();
+            return musteri;
+        }
 
     }
 }
