@@ -27,15 +27,17 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
  
 
         private ObservableCollection<PotansiyelDisiMusteriArama> potansiyelDisiMusteriArama;
-
         public ObservableCollection<PotansiyelDisiMusteriArama> PotansiyelDisiMusteriArama
         {
             get => potansiyelDisiMusteriArama;
             set => SetProperty(ref potansiyelDisiMusteriArama, value);
         }
 
-
-    
+        public string CreatedUserId { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public string LastEditedBy { get; set; }
+        public DateTime? LastEditedDate { get; set; }
+        public Guid? RowGuid { get; set; }
 
 
         [NotMapped]
@@ -51,6 +53,8 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         {
             get
             {
+                if (this.PotansiyelDisiMusteriArama.Count == 0) return string.Empty;
+
                 int yeniGun = 0;
                 TimeSpan? gun = (this.PotansiyelDisiMusteriArama.LastOrDefault()?.Tarih - DateTime.Now);
                 if (gun.Value.TotalDays < 0) yeniGun = (int)gun.Value.TotalDays * -1;

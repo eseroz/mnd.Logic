@@ -27,6 +27,16 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
             set => SetProperty(ref potansiyelDisiMusteri, value); 
         }
 
+
+        public string CreatedUserId { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public string LastEditedBy { get; set; }
+        public DateTime? LastEditedDate { get; set; }
+
+        public Guid? RowGuid { get; set; }
+
+
+
         private DateTime? tarih;
         private string gorusulenKisiEposta;
         private string gorusulenKisiTelefon;

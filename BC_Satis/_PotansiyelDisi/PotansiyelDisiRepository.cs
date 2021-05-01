@@ -34,9 +34,12 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
             dc.SaveChanges();
         }
 
-        public void AramaEkle(PotansiyelDisiMusteriArama ptd_Arama)
+        public void AramaEkle(PotansiyelDisiMusteri musteri, PotansiyelDisiMusteriArama ptd_Arama)
         {
-            dc.PostansiyelDisiMusteriAramas.Add(ptd_Arama);
+
+            var dbMusteri = dc.PostansiyelDisiMusteris.FirstOrDefault(p => p.Id == musteri.Id);
+            dbMusteri.PotansiyelDisiMusteriArama.Add(ptd_Arama);
+           
         }
         public void MusteriEkle(PotansiyelDisiMusteri ptd_Musteri)
         {
@@ -53,7 +56,13 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
 
             return ptd_Aramalar;
         }
+        public PotansiyelDisiMusteriArama Ptd_SonAramaGetir(int musteriId)
+        {
+            var ptd_Aramalar = dc.PostansiyelDisiMusteriAramas
+                .Where(c => c.PotansiyelDisiMusteriId == musteriId).LastOrDefault();
 
+            return ptd_Aramalar;
+        }
         public PotansiyelDisiMusteriArama Ptd_AramaGetir(int id)
         {
             var ptd_Aramalar = dc.PostansiyelDisiMusteriAramas
