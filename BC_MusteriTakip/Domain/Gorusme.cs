@@ -32,6 +32,7 @@ namespace mnd.Logic.BC_MusteriTakip.Domain
         private DateTime? _randevuTarih;
         private DateTime _gorusmeTarih;
         private string musteriGrubu;
+        private string gorusmeListeTipi;
 
         [Key]
         public int Id { get; set; }
@@ -61,9 +62,10 @@ namespace mnd.Logic.BC_MusteriTakip.Domain
         public string GorusulenKisiTel { get => _gorusulenKisiTel; set => SetProperty(ref _gorusulenKisiTel, value); }
 
 
- 
-        public string GorusulenKisiEmail {
-            get => _gorusulenKisiMail; 
+
+        public string GorusulenKisiEmail
+        {
+            get => _gorusulenKisiMail;
             set => SetProperty(ref _gorusulenKisiMail, value);
         }
 
@@ -117,5 +119,11 @@ namespace mnd.Logic.BC_MusteriTakip.Domain
         public Guid RowGuid { get => _rowGuid; set => SetProperty(ref _rowGuid, value); }
 
         public string PandaTemsilcisi { get => _pandaTemsilcisi; set => SetProperty(ref _pandaTemsilcisi, value); }
+
+        public string GorusmeListeTipi {
+            get => gorusmeListeTipi; 
+            set =>SetProperty(ref gorusmeListeTipi, value);
+        }
+
     }
 }

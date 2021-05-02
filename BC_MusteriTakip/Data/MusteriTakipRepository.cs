@@ -31,11 +31,12 @@ namespace mnd.Logic.BC_MusteriTakip.Data
         }
 
 
-        public Task<List<Gorusme>> GorusmeleriPlasiyereGoreGetir(string[] bagliPlasiyerKodlari)
+        public Task<List<Gorusme>> GorusmeleriPlasiyereGoreGetir(string[] bagliPlasiyerKodlari, string formMenuAd)
         {
             var sonuc = db.Gorusmeler
                 .Include(c => c.GorusmeKonuTip)
                 .Include(c => c.GorusmeTip)
+                .Where(c=>c.GorusmeListeTipi == formMenuAd)
                 .Where(c => bagliPlasiyerKodlari.Any(x => x.ToString() == c.PlasiyerKod.ToString()))
                 .AsNoTracking()
                 .ToListAsync();
