@@ -40,18 +40,14 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         }
 
 
-        public void AramaEkle(PotansiyelDisiMusteri musteri, PotansiyelDisiMusteriArama ptd_Arama)
+        public void AramaEkle(PotansiyelDisiMusteriArama ptd_Arama)
         {
-
-            var dbMusteri = dc.PostansiyelDisiMusteris.FirstOrDefault(p => p.Id == musteri.Id);
-            dbMusteri.PotansiyelDisiMusteriArama.Add(ptd_Arama);
+            dc.PostansiyelDisiMusteriAramas.Add(ptd_Arama);
            
         }
         public void MusteriEkle(PotansiyelDisiMusteri ptd_Musteri)
         {
-            dc = new PotansiyelDisiDbContext();
             dc.PostansiyelDisiMusteris.Add(ptd_Musteri);
-            dc.SaveChanges();
         }
         public PotansiyelDisiMusteriArama Ptd_AramaGetirNoTrack(int id)
         {
@@ -94,10 +90,13 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
 
         public PotansiyelDisiMusteri getMusteri(int musteriId)
         {
-            var _dc = new PotansiyelDisiDbContext();
-            var musteri = _dc.PostansiyelDisiMusteris.Where(p => p.Id == musteriId).FirstOrDefault();
-            _dc.Dispose();
+            var musteri = dc.PostansiyelDisiMusteris.Where(p => p.Id == musteriId).FirstOrDefault();
             return musteri;
+        }
+        public P_UlkeSabit getUlke(string ulkeKodu)
+        {
+            var ulke = dc.UlkeSabits.Where(p => p.UlkeKodu == ulkeKodu).FirstOrDefault();
+            return ulke;
         }
 
 

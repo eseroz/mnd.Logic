@@ -1,11 +1,8 @@
 ﻿using mnd.Logic.Model;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace mnd.Logic.BC_Satis._PotansiyelDisi
 {
@@ -23,7 +20,8 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         public string GorusulenKisiEposta { get => gorusulenKisiEposta; set => SetProperty(ref gorusulenKisiEposta, value); }
         public string PlasiyerKod { get => plasiyerKod; set => SetProperty(ref plasiyerKod, value); }
 
-
+        [NotMapped]
+        public string UlkeKodu { get => ulkeKodu; set => SetProperty(ref ulkeKodu, value); }
 
         public string CreatedUserId { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -41,9 +39,20 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         private string gorusulenKisiAdi;
         private string konu;
         private string konuDetay;
-        private string plasiyerAd;
         private string plasiyerKod;
         private int potansiyelDisiMusteriId;
+
+        private string musteriUnvan;
+        private string ulkeKodu;
+
+        [NotMapped]
+        public string MusteriUnvan
+        {
+            get => musteriUnvan;
+            set => SetProperty(ref musteriUnvan, value);
+        }
+
+
 
     }
 }

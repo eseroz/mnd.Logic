@@ -14,6 +14,7 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         public PotansiyelDisiMusteri()
         {
             PotansiyelDisiMusteriArama = new ObservableCollection<PotansiyelDisiMusteriArama>();
+
         }
 
         [Key]
@@ -53,12 +54,16 @@ namespace mnd.Logic.BC_Satis._PotansiyelDisi
         {
             get
             {
-                if (this.PotansiyelDisiMusteriArama.Count == 0) return string.Empty;
+                if (this.PotansiyelDisiMusteriArama.LastOrDefault()?.Tarih != null)
+                {
+                    if (this.PotansiyelDisiMusteriArama.Count == 0) return string.Empty;
 
-                int yeniGun = 0;
-                TimeSpan? gun = (this.PotansiyelDisiMusteriArama.LastOrDefault()?.Tarih - DateTime.Now);
-                if (gun.Value.TotalDays < 0) yeniGun = (int)gun.Value.TotalDays * -1;
-                return yeniGun.ToString();
+                    int yeniGun = 0;
+                    TimeSpan? gun = (this.PotansiyelDisiMusteriArama.LastOrDefault()?.Tarih - DateTime.Now);
+                    if (gun.Value.TotalDays < 0) yeniGun = (int)gun.Value.TotalDays * -1;
+                    return yeniGun.ToString();
+                }
+                return 0.ToString() ;
             }
         }
     }
