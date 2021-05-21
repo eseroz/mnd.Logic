@@ -20,6 +20,8 @@ namespace mnd.Logic.Persistence
         public virtual DbSet<EntityLog> EntityLoglari { get; set; }
         public virtual DbSet<Ayarlar> Ayarlars { get; set; }
         public virtual DbSet<Kullanici> Kullanicilar { get; set; }
+
+        public DbSet<KullaniciBildirim> KullaniciBildirim { get; set; }
         public virtual DbSet<Duyuru> Duyurular { get; set; }
         public virtual DbSet<ExcelImportTanim> ExcelImportTanims { get; set; }
 
@@ -145,7 +147,7 @@ namespace mnd.Logic.Persistence
             modelBuilder.ApplyConfiguration<Palet>(new PaletConfig());
             modelBuilder.ApplyConfiguration<Bobin>(new BobinConfig());
 
-       
+            modelBuilder.Entity<KullaniciBildirim>().ToTable("KullaniciBildirim", "App");
 
             modelBuilder.Entity<NetsisCariHareket>().ToTable("CariHareket", "Netsis");
 

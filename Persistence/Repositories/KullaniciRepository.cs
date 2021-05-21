@@ -14,6 +14,12 @@ namespace mnd.Logic.Persistence.Repositories
         {
         }
 
+        public KullaniciBildirim KullaniciBildirimGetir(string KullaniciId)
+        {
+            return _dc.KullaniciBildirim.Where(p => p.KullaniciId == KullaniciId).LastOrDefault();
+
+        }
+
         public Kullanici KullaniciGetir(string kullaniciId)
         {
             return _dc.Kullanicilar.Where(c => c.KullaniciId == kullaniciId).FirstOrDefault();

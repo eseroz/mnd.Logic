@@ -62,3 +62,5 @@ D:\01-Developer\Projects\Mnd\mndApp\Pandap.Logic\obj\Debug\mnd.Logic.csproj.Core
 D:\01-Developer\Projects\Mnd\mndApp\Pandap.Logic\obj\Debug\mnd.Logic.csproj.CopyComplete
 D:\01-Developer\Projects\Mnd\mndApp\Pandap.Logic\obj\Debug\Pandap.Logic.dll
 D:\01-Developer\Projects\Mnd\mndApp\Pandap.Logic\obj\Debug\Pandap.Logic.pdb
+D:\01-Developer\Projects\Mnd\mndApp\mnd.Logic\obj\Debug\mnd.Logic.csprojAssemblyReference.cache
+D:\01-Developer\Projects\Mnd\mndApp\mnd.Logic\obj\Debug\mnd.Logic.csproj.CoreCompileInputs.cache

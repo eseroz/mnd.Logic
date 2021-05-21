@@ -3,6 +3,7 @@ using mnd.Common.Helpers;
 using mnd.Logic.BC_MusteriTakip.Domain;
 using mnd.Logic.Helper;
 using mnd.Logic.Model;
+using mnd.Logic.Model.App;
 using mnd.Logic.Model.Muhasebe;
 using mnd.Logic.Model.Netsis;
 using mnd.Logic.Model.Satis;
@@ -26,6 +27,7 @@ namespace mnd.Logic.Persistence.Repositories
                 _dc = context;
         }
 
+
         public async Task<ObservableCollection<PandapCari>> PandapCarileriGetirAsync()
         {
             var cev = await _dc.PandapCaris
@@ -35,7 +37,7 @@ namespace mnd.Logic.Persistence.Repositories
              return cev.ToObservableCollection();
         }
 
-        public async Task<ObservableCollection<PandapCari>> PandapCarileriBagliPlasiyerlereGoreGetir(string[] bagliPlasiyerKodlari, string kullaniciRol)
+        public async Task<ObservableCollection<PandapCari>> PandapCarileriBagliPlasiyerlereGoreGetir(string[] bagliPlasiyerKodlari, Kullanici AktifKullanici)
         {
             // yazılabilir olmalı tracking kullan
 
@@ -49,7 +51,7 @@ namespace mnd.Logic.Persistence.Repositories
 
 
 
-            if (kullaniciRol != KULLANICIROLLERI.YONETICI)
+            if (AktifKullanici.KullaniciRol != KULLANICIROLLERI.YONETICI)
             {
                 sonuc = sonuc.Where(c => c.CariIsim.Contains("SEHERLİ DIŞ") == false && c.CariIsim.Contains("SEHERLI DIS") == false);
             }
@@ -67,7 +69,6 @@ namespace mnd.Logic.Persistence.Repositories
 
             var liste =await sonuc.ToListAsync();
 
-
             return liste.ToObservableCollection();
 
         }
@@ -75,8 +76,6 @@ namespace mnd.Logic.Persistence.Repositories
 
         public ObservableCollection<PandapCariDto> PandapCarileriDetayliGetir_light(string[] bagliPlasiyerKodlari = null, string cariKod = null)
         {
-
-
             var cariListeQuery = _dc.PandapCaris
                 .Where(c => c.CariKod.Contains("120"))
                 .Select(c => new PandapCariDto
@@ -110,8 +109,6 @@ namespace mnd.Logic.Persistence.Repositories
 
 
             return cariListe.ToObservableCollection();
-
-
 
         }
 

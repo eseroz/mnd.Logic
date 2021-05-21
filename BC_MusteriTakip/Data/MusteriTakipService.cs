@@ -57,13 +57,9 @@ namespace mnd.Logic.BC_MusteriTakip.Data
 
             var yil = DateTime.Now.Year;
 
-            var str = $"UPDATE PANDA{yil}.dbo.TBLCASABIT SET  " +
+            var str = $"UPDATE MND{yil}.dbo.TBLCASABIT SET  " +
                       "CARI_TEL = @tel, " +
-                      "RAPOR_KODU1 = @kullanimAlanTipKod, " +
-                      "RAPOR_KODU2 = @yillikTonaj, " +
-                      "GRUP_KODU = @agent," +
                       "RAPOR_KODU3 = @musteriPotansiyelDurum," +
-                      "RAPOR_KODU4 = @sektorKod, " +
                       "PLASIYER_KODU=@plasiyerKod, " +
                       "CARI_ADRES = @adres " +
                       "WHERE(CARI_KOD = @cariKod)";
@@ -73,15 +69,17 @@ namespace mnd.Logic.BC_MusteriTakip.Data
             cnn.Open();
             SqlCommand cmd = new SqlCommand(str, cnn);
 
+
             cmd.Parameters.AddWithValue(nameof(tel), tel);
-            cmd.Parameters.AddWithValue(nameof(kullanimAlanTipKod), kullanimAlanTipKod);
-            cmd.Parameters.AddWithValue(nameof(yillikTonaj), yillikTonaj);
-            cmd.Parameters.AddWithValue(nameof(agent), agent);
+            //cmd.Parameters.AddWithValue(nameof(kullanimAlanTipKod), kullanimAlanTipKod);
+            //cmd.Parameters.AddWithValue(nameof(yillikTonaj), yillikTonaj);
+            //cmd.Parameters.AddWithValue(nameof(agent), agent);
             cmd.Parameters.AddWithValue(nameof(musteriPotansiyelDurum), musteriPotansiyelDurum);
-            cmd.Parameters.AddWithValue(nameof(sektorKod), sektorKod);
+            //cmd.Parameters.AddWithValue(nameof(sektorKod), sektorKod);
             cmd.Parameters.AddWithValue(nameof(plasiyerKod), plasiyerKod);
             cmd.Parameters.AddWithValue(nameof(adres), adres);
             cmd.Parameters.AddWithValue(nameof(cariKod), cariKod);
+
 
             int count = cmd.ExecuteNonQuery();
             cnn.Close();
